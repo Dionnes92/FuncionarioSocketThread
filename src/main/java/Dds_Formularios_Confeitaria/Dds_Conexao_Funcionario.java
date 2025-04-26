@@ -6,6 +6,7 @@ package Dds_Formularios_Confeitaria;
 
 import java.io.PrintStream;
 import java.net.Socket;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -77,10 +78,10 @@ public class Dds_Conexao_Funcionario extends javax.swing.JFrame {
                         .addGroup(Dds_Painael_CFLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(Dds_Painael_CFLayout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(Dds_IP_CF, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(Dds_IP_CF, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(Dds_Painael_CFLayout.createSequentialGroup()
                                 .addGap(35, 35, 35)
-                                .addComponent(Dds_Porta_CF, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(Dds_Porta_CF, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(104, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Dds_Painael_CFLayout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
@@ -139,7 +140,10 @@ public class Dds_Conexao_Funcionario extends javax.swing.JFrame {
             
             Thread Dds_T = new Dds_GerenciarConexao(Dds_con, this);
             Dds_T.start();
+            
+            
         } catch (Exception e) {
+               JOptionPane.showMessageDialog(null, "Erro ao conectar: " + e.getMessage());
             e.printStackTrace();
         }
     }//GEN-LAST:event_Dds_ButtonConexaoCSActionPerformed

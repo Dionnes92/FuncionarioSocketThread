@@ -55,11 +55,11 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" attributes="0">
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="Dds_IP_CF" min="-2" pref="71" max="-2" attributes="0"/>
+                                  <Component id="Dds_IP_CF" min="-2" pref="165" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
-                                  <Component id="Dds_Porta_CF" min="-2" pref="142" max="-2" attributes="0"/>
+                                  <Component id="Dds_Porta_CF" min="-2" pref="82" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
