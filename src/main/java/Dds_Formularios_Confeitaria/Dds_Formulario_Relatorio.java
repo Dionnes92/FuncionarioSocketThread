@@ -30,6 +30,7 @@ public class Dds_Formulario_Relatorio extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         Dds_TabelaBolos = new javax.swing.JTable();
         Dds_Atualizar = new javax.swing.JButton();
+        Dds_ButtonMenu = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -53,6 +54,13 @@ public class Dds_Formulario_Relatorio extends javax.swing.JFrame {
 
         Dds_Atualizar.setText("Atualizar");
 
+        Dds_ButtonMenu.setText("Menu");
+        Dds_ButtonMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Dds_ButtonMenuActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -61,17 +69,21 @@ public class Dds_Formulario_Relatorio extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 704, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(283, 283, 283)
+                .addGap(106, 106, 106)
                 .addComponent(Dds_Atualizar)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(Dds_ButtonMenu)
+                .addGap(90, 90, 90))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
-                .addComponent(Dds_Atualizar)
-                .addGap(23, 23, 23))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Dds_Atualizar)
+                    .addComponent(Dds_ButtonMenu))
+                .addGap(21, 21, 21))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -86,7 +98,13 @@ public class Dds_Formulario_Relatorio extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void Dds_ButtonMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Dds_ButtonMenuActionPerformed
+       new Dds_Menu_Principal().setVisible(true);
+       dispose();
+    }//GEN-LAST:event_Dds_ButtonMenuActionPerformed
 
     /**
      * @param args the command line arguments
@@ -125,6 +143,7 @@ public class Dds_Formulario_Relatorio extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Dds_Atualizar;
+    private javax.swing.JButton Dds_ButtonMenu;
     private javax.swing.JTable Dds_TabelaBolos;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
