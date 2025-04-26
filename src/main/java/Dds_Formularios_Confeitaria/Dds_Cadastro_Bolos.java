@@ -4,6 +4,17 @@
  */
 package Dds_Formularios_Confeitaria;
 
+import Dds_Objeto.Dds_Bolo;
+import com.google.gson.Gson;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintStream;
+import java.net.Socket;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Dionnes
@@ -13,6 +24,16 @@ public class Dds_Cadastro_Bolos extends javax.swing.JFrame {
     /**
      * Creates new form Dds_Cadastro_Bolos
      */
+    public void Dds_limparCampos() {
+        Dds_NomeBolo.setText("");
+        Dds_tipoBolo.setSelectedItem("");
+        Dds_Cobertura.setSelectedItem("");
+        Dds_Recheio.setSelectedItem("");
+        Dds_Tamanho.setSelectedItem("");
+        Dds_Valor.setText("");
+        Dds_Data.setText("");
+    }
+
     public Dds_Cadastro_Bolos() {
         initComponents();
     }
@@ -41,9 +62,10 @@ public class Dds_Cadastro_Bolos extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         Dds_Tamanho = new javax.swing.JComboBox<>();
         jLabel7 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        Dds_Data = new javax.swing.JTextField();
+        Dds_BotaoSalvar = new javax.swing.JButton();
         Dds_Button_Menu = new javax.swing.JButton();
+        Dds_ButtonEditar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -77,10 +99,10 @@ public class Dds_Cadastro_Bolos extends javax.swing.JFrame {
 
         jLabel7.setText("Data de validade:");
 
-        jButton1.setText("Salvar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        Dds_BotaoSalvar.setText("Salvar");
+        Dds_BotaoSalvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                Dds_BotaoSalvarActionPerformed(evt);
             }
         });
 
@@ -88,6 +110,13 @@ public class Dds_Cadastro_Bolos extends javax.swing.JFrame {
         Dds_Button_Menu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Dds_Button_MenuActionPerformed(evt);
+            }
+        });
+
+        Dds_ButtonEditar.setText("Editar");
+        Dds_ButtonEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Dds_ButtonEditarActionPerformed(evt);
             }
         });
 
@@ -123,10 +152,12 @@ public class Dds_Cadastro_Bolos extends javax.swing.JFrame {
                                     .addComponent(Dds_Cobertura, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(Dds_Recheio, 0, 217, Short.MAX_VALUE)
                                     .addComponent(Dds_Valor)
-                                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(Dds_CadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(Dds_ButtonEditar)
+                                        .addComponent(Dds_Data, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addGroup(Dds_CadastroLayout.createSequentialGroup()
                                 .addGap(39, 39, 39)
-                                .addComponent(jButton1)
+                                .addComponent(Dds_BotaoSalvar)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(Dds_Button_Menu)))))
                 .addGap(41, 41, 41))
@@ -163,11 +194,12 @@ public class Dds_Cadastro_Bolos extends javax.swing.JFrame {
                 .addGap(32, 32, 32)
                 .addGroup(Dds_CadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Dds_Data, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
                 .addGroup(Dds_CadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(Dds_Button_Menu))
+                    .addComponent(Dds_BotaoSalvar)
+                    .addComponent(Dds_Button_Menu)
+                    .addComponent(Dds_ButtonEditar))
                 .addGap(23, 23, 23))
         );
 
@@ -190,14 +222,65 @@ public class Dds_Cadastro_Bolos extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_Dds_tipoBoloActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void Dds_BotaoSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Dds_BotaoSalvarActionPerformed
+        Gson gson = new Gson();
+        try {
+            Socket Dds_con;
+            Dds_con = new Socket("127.0.0.1", 1234);
+            Dds_Bolo Dds_B = new Dds_Bolo();
+            Dds_B.setDds_NomeBolo(Dds_NomeBolo.getText());
+            Dds_B.setDds_tipoBolo(Dds_tipoBolo.getSelectedItem().toString());
+            Dds_B.setDds_Cobertura(Dds_Cobertura.getSelectedItem().toString());
+            Dds_B.setDds_Tamanho(Dds_Tamanho.getSelectedItem().toString());
+            Dds_B.setDds_Valor(Dds_Valor.getText());
+            Dds_B.setDds_Data(Dds_Data.getText());
+
+            String Dds_ObjetoJson = gson.toJson(Dds_B);
+            PrintStream Dds_Saida = new PrintStream(Dds_con.getOutputStream());
+            Dds_Saida.println(Dds_ObjetoJson);
+            Dds_limparCampos();
+            JOptionPane.showMessageDialog(this, "Salvo com sucesso!");
+
+            Dds_con.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_Dds_BotaoSalvarActionPerformed
 
     private void Dds_Button_MenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Dds_Button_MenuActionPerformed
-       new Dds_Menu_Principal().setVisible(true);
-       dispose();
+        new Dds_Menu_Principal().setVisible(true);
+        dispose();
     }//GEN-LAST:event_Dds_Button_MenuActionPerformed
+
+    private void Dds_ButtonEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Dds_ButtonEditarActionPerformed
+        Gson gson = new Gson();
+
+        try {
+            Dds_Bolo Dds_B = new Dds_Bolo();
+            Socket Dds_con = new Socket("127.0.0.1", 1234);
+            PrintStream Dds_Saida = new PrintStream(Dds_con.getOutputStream());
+            Dds_Saida.println("Buscar");
+            BufferedReader Dds_Entrada = new BufferedReader(new InputStreamReader(Dds_con.getInputStream()));
+            String Dds_ObjetoJson = Dds_Entrada.readLine();
+            
+            Dds_B = gson.fromJson(Dds_ObjetoJson, Dds_Bolo.class);
+            
+            Dds_NomeBolo.setText(Dds_B.getDds_NomeBolo());
+            Dds_tipoBolo.setSelectedItem(Dds_B.getDds_tipoBolo().toString());
+            Dds_Cobertura.setSelectedItem(Dds_B.getDds_Cobertura().toString());
+            Dds_Recheio.setSelectedItem(Dds_B.getDds_Recheio().toString());
+            Dds_Tamanho.setSelectedItem(Dds_B.getDds_Tamanho().toString());
+            Dds_Valor.setText(Dds_B.getDds_Valor());
+            Dds_Data.setText(Dds_B.getDds_Data());
+            
+            Dds_con.close();
+            
+        } catch (IOException ex) {
+            
+        }
+
+    }//GEN-LAST:event_Dds_ButtonEditarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -235,16 +318,18 @@ public class Dds_Cadastro_Bolos extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Dds_BotaoSalvar;
+    private javax.swing.JButton Dds_ButtonEditar;
     private javax.swing.JButton Dds_Button_Menu;
     private javax.swing.JPanel Dds_Cadastro;
     private javax.swing.JComboBox<String> Dds_Cobertura;
+    private javax.swing.JTextField Dds_Data;
     private javax.swing.JTextField Dds_NomeBolo;
     private javax.swing.JComboBox<String> Dds_Recheio;
     private javax.swing.JComboBox<String> Dds_Tamanho;
     private javax.swing.JLabel Dds_Titulo;
     private javax.swing.JTextField Dds_Valor;
     private javax.swing.JComboBox<String> Dds_tipoBolo;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -252,6 +337,5 @@ public class Dds_Cadastro_Bolos extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }
