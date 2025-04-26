@@ -13,6 +13,7 @@ public class Dds_Bolo {
     private String Dds_NomeBolo;
     private String Dds_tipoBolo;
     private String Dds_Recheio;
+    private String Dds_Cobertura;
     private String Dds_Tamanho;
     private String Dds_Valor;
     private String Dds_Data;
@@ -63,6 +64,14 @@ public class Dds_Bolo {
 
     public void setDds_Data(String Dds_Data) {
         this.Dds_Data = Dds_Data;
+    }
+
+    public String getDds_Cobertura() {
+        return Dds_Cobertura;
+    }
+
+    public void setDds_Cobertura(String Dds_Cobertura) {
+        this.Dds_Cobertura = Dds_Cobertura;
     }
     
     
