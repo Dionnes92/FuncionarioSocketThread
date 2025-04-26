@@ -4,12 +4,16 @@
  */
 package Dds_Formularios_Confeitaria;
 
+import java.io.PrintStream;
+import java.net.Socket;
+
 /**
  *
  * @author Dionnes
  */
 public class Dds_Conexao_Funcionario extends javax.swing.JFrame {
 
+         PrintStream Dds_saida;
     /**
      * Creates new form Dds_Conexao_Funcionario
      */
@@ -27,18 +31,86 @@ public class Dds_Conexao_Funcionario extends javax.swing.JFrame {
     private void initComponents() {
 
         Dds_Painael_CF = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        Dds_IP_CF = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        Dds_Porta_CF = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        Dds_NomeF = new javax.swing.JTextField();
+        Dds_ConexaoF = new javax.swing.JLabel();
+        Dds_ButtonConexaoCS = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jLabel1.setText("IP:");
+
+        jLabel2.setText("Porta:");
+
+        jLabel3.setText("Nome do Funcionario:");
+
+        Dds_ConexaoF.setFont(new java.awt.Font("Segoe UI", 3, 24)); // NOI18N
+        Dds_ConexaoF.setText("Conexão Para o servidor");
+
+        Dds_ButtonConexaoCS.setText("Conectar");
+        Dds_ButtonConexaoCS.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Dds_ButtonConexaoCSActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout Dds_Painael_CFLayout = new javax.swing.GroupLayout(Dds_Painael_CF);
         Dds_Painael_CF.setLayout(Dds_Painael_CFLayout);
         Dds_Painael_CFLayout.setHorizontalGroup(
             Dds_Painael_CFLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(Dds_Painael_CFLayout.createSequentialGroup()
+                .addGroup(Dds_Painael_CFLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(Dds_Painael_CFLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(Dds_NomeF, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(Dds_Painael_CFLayout.createSequentialGroup()
+                        .addGap(29, 29, 29)
+                        .addGroup(Dds_Painael_CFLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(Dds_Painael_CFLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(Dds_Painael_CFLayout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(Dds_IP_CF, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(Dds_Painael_CFLayout.createSequentialGroup()
+                                .addGap(35, 35, 35)
+                                .addComponent(Dds_Porta_CF, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(104, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Dds_Painael_CFLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(Dds_ConexaoF, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(Dds_Painael_CFLayout.createSequentialGroup()
+                .addGap(154, 154, 154)
+                .addComponent(Dds_ButtonConexaoCS)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         Dds_Painael_CFLayout.setVerticalGroup(
             Dds_Painael_CFLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(Dds_Painael_CFLayout.createSequentialGroup()
+                .addGap(15, 15, 15)
+                .addComponent(Dds_ConexaoF)
+                .addGap(54, 54, 54)
+                .addGroup(Dds_Painael_CFLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(Dds_IP_CF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(Dds_Painael_CFLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Dds_Porta_CF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
+                .addGap(26, 26, 26)
+                .addGroup(Dds_Painael_CFLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(Dds_NomeF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(31, 31, 31)
+                .addComponent(Dds_ButtonConexaoCS)
+                .addContainerGap(35, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -54,6 +126,23 @@ public class Dds_Conexao_Funcionario extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void Dds_ButtonConexaoCSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Dds_ButtonConexaoCSActionPerformed
+        
+        try {
+            Socket Dds_con  = new Socket(Dds_IP_CF.getText(), Integer.parseInt(Dds_Porta_CF.getText()));
+            
+            Dds_saida = new PrintStream(Dds_con.getOutputStream());
+            
+            String Dds_nome = Dds_NomeF.getText();
+            Dds_saida.println(Dds_nome);
+            
+            Thread Dds_T = new Dds_GerenciarConexao(Dds_con, this);
+            Dds_T.start();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_Dds_ButtonConexaoCSActionPerformed
 
     /**
      * @param args the command line arguments
@@ -91,6 +180,14 @@ public class Dds_Conexao_Funcionario extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Dds_ButtonConexaoCS;
+    private javax.swing.JLabel Dds_ConexaoF;
+    private javax.swing.JTextField Dds_IP_CF;
+    private javax.swing.JTextField Dds_NomeF;
     private javax.swing.JPanel Dds_Painael_CF;
+    private javax.swing.JTextField Dds_Porta_CF;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     // End of variables declaration//GEN-END:variables
 }
