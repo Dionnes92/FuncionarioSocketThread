@@ -47,16 +47,16 @@ public class Dds_Menu_Principal extends javax.swing.JFrame {
         Dds_PainelMenu.setBackground(new java.awt.Color(255, 255, 255));
 
         Dds_ImagenBolos.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        Dds_ImagenBolos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Dds_Imagens/img/Bolos.jpeg"))); // NOI18N
+        Dds_ImagenBolos.setIcon(new javax.swing.ImageIcon("C:\\Users\\Usuário\\OneDrive\\Área de Trabalho\\sistemas-Distribuidos\\Dds_Funcionario_Socket_Thread\\src\\main\\java\\Dds_Imagens\\img\\Bolos.jpeg")); // NOI18N
 
         javax.swing.GroupLayout Dds_PainelMenuLayout = new javax.swing.GroupLayout(Dds_PainelMenu);
         Dds_PainelMenu.setLayout(Dds_PainelMenuLayout);
         Dds_PainelMenuLayout.setHorizontalGroup(
             Dds_PainelMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(Dds_PainelMenuLayout.createSequentialGroup()
-                .addGap(54, 54, 54)
-                .addComponent(Dds_ImagenBolos)
-                .addContainerGap(68, Short.MAX_VALUE))
+                .addGap(60, 60, 60)
+                .addComponent(Dds_ImagenBolos, javax.swing.GroupLayout.PREFERRED_SIZE, 336, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(78, Short.MAX_VALUE))
         );
         Dds_PainelMenuLayout.setVerticalGroup(
             Dds_PainelMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

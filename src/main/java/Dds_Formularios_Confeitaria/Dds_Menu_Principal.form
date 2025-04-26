@@ -110,9 +110,9 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="54" max="-2" attributes="0"/>
-                  <Component id="Dds_ImagenBolos" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="68" max="32767" attributes="0"/>
+                  <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
+                  <Component id="Dds_ImagenBolos" min="-2" pref="336" max="-2" attributes="0"/>
+                  <EmptySpace pref="78" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -129,7 +129,7 @@
               <Font name="Segoe UI" size="24" style="0"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/Dds_Imagens/img/Bolos.jpeg"/>
+              <Image iconType="2" name="C:\Users\Usu&#xe1;rio\OneDrive\&#xc1;rea de Trabalho\sistemas-Distribuidos\Dds_Funcionario_Socket_Thread\src\main\java\Dds_Imagens\img\Bolos.jpeg"/>
             </Property>
           </Properties>
         </Component>
