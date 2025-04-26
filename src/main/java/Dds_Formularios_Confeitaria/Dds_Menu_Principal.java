@@ -29,6 +29,7 @@ public class Dds_Menu_Principal extends javax.swing.JFrame {
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
         Dds_PainelMenu = new javax.swing.JPanel();
+        Dds_ImagenBolos = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         Dds_Cadastro = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
@@ -43,15 +44,23 @@ public class Dds_Menu_Principal extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        Dds_PainelMenu.setBackground(new java.awt.Color(255, 255, 255));
+
+        Dds_ImagenBolos.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        Dds_ImagenBolos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Dds_Imagens/img/Bolos.jpeg"))); // NOI18N
+
         javax.swing.GroupLayout Dds_PainelMenuLayout = new javax.swing.GroupLayout(Dds_PainelMenu);
         Dds_PainelMenu.setLayout(Dds_PainelMenuLayout);
         Dds_PainelMenuLayout.setHorizontalGroup(
             Dds_PainelMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(Dds_PainelMenuLayout.createSequentialGroup()
+                .addGap(54, 54, 54)
+                .addComponent(Dds_ImagenBolos)
+                .addContainerGap(68, Short.MAX_VALUE))
         );
         Dds_PainelMenuLayout.setVerticalGroup(
             Dds_PainelMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 277, Short.MAX_VALUE)
+            .addComponent(Dds_ImagenBolos, javax.swing.GroupLayout.DEFAULT_SIZE, 277, Short.MAX_VALUE)
         );
 
         Dds_Cadastro.setText("Tela Cadastro");
@@ -100,7 +109,7 @@ public class Dds_Menu_Principal extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(Dds_PainelMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(Dds_PainelMenu, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -160,6 +169,7 @@ public class Dds_Menu_Principal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu Dds_Cadastro;
+    private javax.swing.JLabel Dds_ImagenBolos;
     private javax.swing.JPanel Dds_PainelMenu;
     private javax.swing.JMenuItem Dds_Sair;
     private javax.swing.JMenu jMenu1;
