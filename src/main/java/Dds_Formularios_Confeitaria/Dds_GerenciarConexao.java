@@ -15,11 +15,11 @@ import java.net.Socket;
 public class Dds_GerenciarConexao extends Thread {
     
     private Socket Dds_conexao;
-    private Dds_Conexao_Funcionario Form;
+    private Dds_Conexao_Funcionario Dds_Form;
 
     public Dds_GerenciarConexao(Socket Dds_conexao, Dds_Conexao_Funcionario Form) {
         this.Dds_conexao = Dds_conexao;
-        this.Form = Form;
+        this.Dds_Form = Form;
     }
     
     @Override
