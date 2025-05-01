@@ -4,17 +4,75 @@
  */
 package Dds_Formularios_Confeitaria;
 
+import Dds_Objeto.Dds_Bolo;
+import com.google.gson.Gson;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintStream;
+import java.net.Socket;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Dionnes
  */
-public class Dds_Formulario_Relatorio extends javax.swing.JFrame {
-
-    /**
-     * Creates new form Dds_Formulario_Relatorio
-     */
+public class Dds_Formulario_Relatorio extends javax.swing.JFrame implements Runnable{
+     private Socket Dds_conexao;
+      Thread Dds_t;
+   
+     private void Dds_preencherTab(String Dds_Si){
+         Gson Dds_gson = new Gson();
+         
+         try {
+             Dds_Bolo Dds_B;
+             
+             Socket Dds_con = new  Socket("127.0.0.1",2222);
+             PrintStream Dds_saida  = new PrintStream(Dds_con.getOutputStream());
+             Dds_saida.println("Buscar");
+             
+              BufferedReader Dds_entrada = new BufferedReader(
+                    new InputStreamReader(Dds_con.getInputStream()));
+            
+            DefaultTableModel Dds_TBolos = (DefaultTableModel)Dds_TabelaBolos.getModel();
+            
+            String Dds_linha;
+            Dds_TBolos.setNumRows(0);            
+            while(true)
+            {   
+                Dds_linha = Dds_entrada.readLine();
+                              
+                if(Dds_linha != null && Dds_linha.trim().length()!=0)
+                {   
+                    Dds_B = Dds_gson.fromJson(Dds_linha, Dds_Bolo.class);
+                    Dds_TBolos.addRow(new Object[]{Dds_B.getDds_NomeBolo(),Dds_B.getDds_tipoBolo(),Dds_B.getDds_Cobertura(),
+                    Dds_B.getDds_Recheio(),Dds_B.getDds_Tamanho(), Dds_B.getDds_Valor(), Dds_B.getDds_Data()});
+                }
+            }  
+         } catch (Exception e) {
+             e.printStackTrace();
+         }
+     }
+     
+    public void run() {        
+        Dds_preencherTab("Inicio");
+        
+    }
     public Dds_Formulario_Relatorio() {
         initComponents();
+        
+         try
+        {            
+            Socket Dds_con = new Socket("127.0.0.1", 2222);
+            this.Dds_conexao = Dds_con;
+            Dds_t = new Thread(this);            
+            Dds_t.start();            
+        }
+        catch(IOException e)
+        {
+            e.printStackTrace();
+        }         
+        
     }
 
     /**
