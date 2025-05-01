@@ -26,10 +26,10 @@ public class Dds_Cadastro_Bolos extends javax.swing.JFrame {
      */
     public void Dds_limparCampos() {
         Dds_NomeBolo.setText("");
-        Dds_tipoBolo.setSelectedItem("");
+       /*Dds_tipoBolo.setSelectedItem("");
         Dds_Cobertura.setSelectedItem("");
         Dds_Recheio.setSelectedItem("");
-        Dds_Tamanho.setSelectedItem("");
+        Dds_Tamanho.setSelectedItem("");*/
         Dds_Valor.setText("");
         Dds_Data.setText("");
     }
@@ -226,7 +226,7 @@ public class Dds_Cadastro_Bolos extends javax.swing.JFrame {
         Gson gson = new Gson();
         try {
             Socket Dds_con;
-            Dds_con = new Socket("127.0.0.1", 1234);
+            Dds_con = new Socket("127.0.0.1", 2222);
             Dds_Bolo Dds_B = new Dds_Bolo();
             Dds_B.setDds_NomeBolo(Dds_NomeBolo.getText());
             Dds_B.setDds_tipoBolo(Dds_tipoBolo.getSelectedItem().toString());
@@ -234,7 +234,7 @@ public class Dds_Cadastro_Bolos extends javax.swing.JFrame {
             Dds_B.setDds_Tamanho(Dds_Tamanho.getSelectedItem().toString());
             Dds_B.setDds_Valor(Dds_Valor.getText());
             Dds_B.setDds_Data(Dds_Data.getText());
-
+            
             String Dds_ObjetoJson = gson.toJson(Dds_B);
             PrintStream Dds_Saida = new PrintStream(Dds_con.getOutputStream());
             Dds_Saida.println(Dds_ObjetoJson);
@@ -258,7 +258,7 @@ public class Dds_Cadastro_Bolos extends javax.swing.JFrame {
 
         try {
             Dds_Bolo Dds_B = new Dds_Bolo();
-            Socket Dds_con = new Socket("127.0.0.1", 1234);
+            Socket Dds_con = new Socket("127.0.0.1", 2222);
             PrintStream Dds_Saida = new PrintStream(Dds_con.getOutputStream());
             Dds_Saida.println("Buscar");
             BufferedReader Dds_Entrada = new BufferedReader(new InputStreamReader(Dds_con.getInputStream()));
@@ -267,7 +267,7 @@ public class Dds_Cadastro_Bolos extends javax.swing.JFrame {
             Dds_B = gson.fromJson(Dds_ObjetoJson, Dds_Bolo.class);
             
             Dds_NomeBolo.setText(Dds_B.getDds_NomeBolo());
-            Dds_tipoBolo.setSelectedItem(Dds_B.getDds_tipoBolo().toString());
+            Dds_tipoBolo.setSelectedItem(Dds_B.getDds_tipoBolo());
             Dds_Cobertura.setSelectedItem(Dds_B.getDds_Cobertura().toString());
             Dds_Recheio.setSelectedItem(Dds_B.getDds_Recheio().toString());
             Dds_Tamanho.setSelectedItem(Dds_B.getDds_Tamanho().toString());
