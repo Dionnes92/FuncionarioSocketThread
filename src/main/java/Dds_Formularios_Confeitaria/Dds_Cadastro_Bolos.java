@@ -228,9 +228,11 @@ public class Dds_Cadastro_Bolos extends javax.swing.JFrame {
             Socket Dds_con;
             Dds_con = new Socket("127.0.0.1", 2222);
             Dds_Bolo Dds_B = new Dds_Bolo();
+            
             Dds_B.setDds_NomeBolo(Dds_NomeBolo.getText());
             Dds_B.setDds_tipoBolo(Dds_tipoBolo.getSelectedItem().toString());
             Dds_B.setDds_Cobertura(Dds_Cobertura.getSelectedItem().toString());
+            Dds_B.setDds_Recheio(Dds_Recheio.getSelectedItem().toString());
             Dds_B.setDds_Tamanho(Dds_Tamanho.getSelectedItem().toString());
             Dds_B.setDds_Valor(Dds_Valor.getText());
             Dds_B.setDds_Data(Dds_Data.getText());
@@ -267,7 +269,7 @@ public class Dds_Cadastro_Bolos extends javax.swing.JFrame {
             Dds_B = gson.fromJson(Dds_ObjetoJson, Dds_Bolo.class);
             
             Dds_NomeBolo.setText(Dds_B.getDds_NomeBolo());
-            Dds_tipoBolo.setSelectedItem(Dds_B.getDds_tipoBolo());
+            Dds_tipoBolo.setSelectedItem(Dds_B.getDds_tipoBolo().toString());
             Dds_Cobertura.setSelectedItem(Dds_B.getDds_Cobertura().toString());
             Dds_Recheio.setSelectedItem(Dds_B.getDds_Recheio().toString());
             Dds_Tamanho.setSelectedItem(Dds_B.getDds_Tamanho().toString());
